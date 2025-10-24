@@ -11,9 +11,9 @@ function RouteComponent() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex-1 flex flex-col justify-center items-center gap-y-2 text-white">
+    <div className="flex-1 font-grotesk flex flex-col justify-center items-center gap-y-2 text-white">
       <h2 className="text-3xl md:text-4xl">Welcome to Taskify</h2>
-      <p className="font-poppins italic">
+      <p className="italic text-center">
         Your number one platform for managing tickets
       </p>
 
