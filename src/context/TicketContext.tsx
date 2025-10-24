@@ -22,7 +22,9 @@ const TicketContext = createContext<TicketContextTypes | undefined>({
 const TicketProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
 
-  const storage = JSON.parse(localStorage.getItem("tickets")!) as Ticket[];
+  const storage =
+    (JSON.parse(localStorage.getItem("tickets")!) as Ticket[]) ?? [];
+  console.log(storage);
   const [tickets, setTickets] = useState<Ticket[]>(storage);
 
   useEffect(() => {

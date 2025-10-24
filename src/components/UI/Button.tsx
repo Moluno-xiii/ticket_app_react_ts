@@ -7,6 +7,7 @@ interface Props extends ComponentProps<"button"> {
   iconColor?: string;
   variant?: "error" | "default";
   icon?: IconType;
+  additionalStyles?: string;
 }
 
 const Button: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const Button: React.FC<Props> = ({
   iconColor,
   variant,
   icon: IconComponent,
+  additionalStyles,
   ...rest
 }) => {
   return (
@@ -24,7 +26,7 @@ const Button: React.FC<Props> = ({
           : `text-red-600 `
       } px-4 py-2 rounded-lg flex flex-row items-center justify-center gap-4   transition-all duration-300 cursor-pointer ${
         variant === "error" && "bg-red-600 hover:bg-red-600/50"
-      }`}
+      } ${additionalStyles}`}
       {...rest}
     >
       {title}

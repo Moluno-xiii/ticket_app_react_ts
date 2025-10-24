@@ -6,9 +6,13 @@ interface IconProps extends ComponentProps<"button"> {
   color?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ icon: IconDisplay, color }) => {
+const Icon: React.FC<IconProps> = ({ icon: IconDisplay, color, ...rest }) => {
   return (
-    <button style={{ color: color }} className={`text-primary cursor-pointer`}>
+    <button
+      style={{ color: color }}
+      className={`text-primary cursor-pointer`}
+      {...rest}
+    >
       {<IconDisplay size={24} />}
     </button>
   );

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/dashboard/overview")({
 function RouteComponent() {
   const { tickets } = useTicket();
   return (
-    <div className="flex flex-col gap-y-5 h-full">
+    <div className="flex flex-col gap-y-5 h-full w-full">
       <header className="flex flex-row justify-between items-center">
         <h2 className="text-xl md:text-2xl font-grotesk text-dark">Overview</h2>
         <p className="text-primary">Total Tickets ({tickets.length})</p>

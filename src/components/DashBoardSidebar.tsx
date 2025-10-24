@@ -6,7 +6,7 @@ const DashboardSidebar = ({ openModal }: { openModal: () => void }) => {
   return (
     <nav
       style={{ zIndex: 1 }}
-      className="bg-cream font-inter drop-shadow-xl border border-primary rounded-md p-3 flex z-2 flex-col"
+      className="bg-cream font-inter drop-shadow-xl border border-primary rounded-md p-3 hidden sm:flex z-2 flex-col"
     >
       <ul className="flex flex-col gap-y-4 w-full flex-1">
         <li className="w-full">

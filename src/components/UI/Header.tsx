@@ -1,12 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import useAuth from "../../hooks/useAuth";
-import Button from "./Button";
 import { useState } from "react";
+import { CiMenuFries } from "react-icons/ci";
+import useAuth from "../../hooks/useAuth";
 import { LogoutModal } from "../../routes/dashboard/route";
+import Button from "./Button";
+import Icon from "./Icon";
+import MobileSideBar from "./MobileSidebar";
 
 const Header: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   return (
     <header className="border-primary z-50 shadow-xl font-grotesk border sticky flex flex-row justify-between items-center top-4 rounded-lg  px-4 py-3 bg-cream">
       <Link
@@ -17,7 +21,7 @@ const Header: React.FC = () => {
       </Link>
       {isLoggedIn ? (
         <>
-          <ul className="flex flex-row gap-x-5 justify-between items-center">
+          <ul className="hidden sm:flex flex-row gap-x-5 justify-between items-center">
             <li>
               <Link
                 to="/dashboard"
@@ -39,7 +43,19 @@ const Header: React.FC = () => {
             title="Logout"
             variant="error"
             onClick={() => setIsLogoutModalOpen(true)}
+            additionalStyles="hidden sm:flex"
           />
+          <Icon
+            icon={CiMenuFries}
+            onClick={() => setIsNavOpen(true)}
+            className="sm:hidden"
+          />
+          {isNavOpen ? (
+            <MobileSideBar
+              close={() => setIsNavOpen(false)}
+              openLogoutModal={() => setIsLogoutModalOpen(true)}
+            />
+          ) : null}
           {isLogoutModalOpen ? (
             <LogoutModal
               closeModal={() => setIsLogoutModalOpen(false)}

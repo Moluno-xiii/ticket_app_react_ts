@@ -17,7 +17,7 @@ function RouteComponent() {
     navigate({ to: "/dashboard/overview" });
   }, [navigate]);
   return (
-    <div className="grid grid-cols-[200px_1fr] gap-5 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-[200px_1fr]  gap-5 w-full">
       <DashboardSidebar openModal={() => setIsLogoutModalOpen(true)} />
       <main className="">
         <Outlet />
