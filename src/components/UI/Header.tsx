@@ -1,13 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import Button from "./Button";
+import githubUsername from "github-username";
 
 const Header: React.FC = () => {
-  const { isLoggedIn, logout } = useAuth();
-  console.log(
-    "islogged in",
-    isLoggedIn === true ? "logged in" : "not logged in"
-  );
+  // const { isLoggedIn, logout } = useAuth();
   return (
     <header className="border-primary border sticky top-4 rounded-lg  px-4 py-3 bg-cream">
       <ul className="flex flex-row justify-between items-center">
@@ -19,14 +16,29 @@ const Header: React.FC = () => {
             Home
           </Link>{" "}
         </li>
-        {isLoggedIn && (
+        <li>
+          <Button onClick={getUserName} title="Get uusername" />
+        </li>
+        {/* {isLoggedIn && (
           <li>
             <Button title="Logout" variant="error" onClick={logout} />
           </li>
-        )}
+        )} */}
       </ul>
     </header>
   );
 };
 
 export default Header;
+
+const getUserName = async () => {
+  try {
+    console.log("fetching....");
+    const request = await githubUsername("kingeasyemmanuel86@gmail.com");
+    console.log("request data", request);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    console.log("fetch ended");
+  }
+};

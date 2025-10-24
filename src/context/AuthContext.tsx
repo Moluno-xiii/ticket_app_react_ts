@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "@tanstack/react-router";
 
 type AuthContextTypes = {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean | null;
   login: (email: string, password: string) => void;
   signUp: (email: string, password: string) => void;
   logout: () => void;
@@ -18,13 +18,15 @@ const AuthContext = createContext<AuthContextTypes>({
 });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const sessionToken = localStorage.getItem("ticketapp_session");
     if (sessionToken) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
@@ -69,9 +71,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     localStorage.removeItem("ticketapp_session");
-    toast.success("Logged out successfully");
+    navigate({ to: "/auth/login" });
+    toast.success("Log out successful!");
     setIsLoggedIn(false);
-    navigate({ to: "/" });
   };
 
   return (

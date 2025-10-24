@@ -19,34 +19,48 @@ function RouteComponent() {
     const data = Object.fromEntries(formData) as {
       email: string;
       password: string;
+      confirmPassword: string;
     };
     if (!emailRegex.test(data.email)) {
       toast.error("Invalid email");
       return;
     }
+    if (data.email !== data.confirmPassword) {
+      toast.error("Both password fields do not match, try again!");
+    }
     signUp(data.email, data.password);
   };
   return (
     <form
-      className="flex w-full justify-center items-center flex-col gap-y-4"
+      className="flex w-full justify-center items-center flex-col gap-y-5"
       onSubmit={handleSubmit}
     >
       <h2 className="text-xl md:text-3xl">Sign up</h2>
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="email"></label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md"
+          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
           name="email"
           required
         />
       </div>
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="password"></label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md"
+          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
           name="password"
+          required
+          minLength={8}
+        />
+      </div>
+      <div className="flex flex-col gap-y-2">
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          name="confirmPassword"
           required
           minLength={8}
         />
