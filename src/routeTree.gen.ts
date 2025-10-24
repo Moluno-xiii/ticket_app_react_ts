@@ -13,10 +13,12 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TicketsIndexRouteImport } from './routes/tickets/index'
+import { Route as TicketsNewRouteImport } from './routes/tickets/new'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardOverviewRouteImport } from './routes/dashboard/overview'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as TicketsEditTicketidRouteImport } from './routes/tickets/edit/$ticketid'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -36,6 +38,11 @@ const IndexRoute = IndexRouteImport.update({
 const TicketsIndexRoute = TicketsIndexRouteImport.update({
   id: '/tickets/',
   path: '/tickets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TicketsNewRoute = TicketsNewRouteImport.update({
+  id: '/tickets/new',
+  path: '/tickets/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
@@ -58,6 +65,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TicketsEditTicketidRoute = TicketsEditTicketidRouteImport.update({
+  id: '/tickets/edit/$ticketid',
+  path: '/tickets/edit/$ticketid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +79,9 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/new': typeof TicketsNewRoute
   '/tickets': typeof TicketsIndexRoute
+  '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +91,9 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/new': typeof TicketsNewRoute
   '/tickets': typeof TicketsIndexRoute
+  '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +104,9 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/new': typeof TicketsNewRoute
   '/tickets/': typeof TicketsIndexRoute
+  '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +118,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/new'
     | '/tickets'
+    | '/tickets/edit/$ticketid'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +130,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/new'
     | '/tickets'
+    | '/tickets/edit/$ticketid'
   id:
     | '__root__'
     | '/'
@@ -120,7 +142,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/new'
     | '/tickets/'
+    | '/tickets/edit/$ticketid'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -129,7 +153,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  TicketsNewRoute: typeof TicketsNewRoute
   TicketsIndexRoute: typeof TicketsIndexRoute
+  TicketsEditTicketidRoute: typeof TicketsEditTicketidRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -162,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TicketsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tickets/new': {
+      id: '/tickets/new'
+      path: '/tickets/new'
+      fullPath: '/tickets/new'
+      preLoaderRoute: typeof TicketsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/settings': {
       id: '/dashboard/settings'
       path: '/settings'
@@ -190,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tickets/edit/$ticketid': {
+      id: '/tickets/edit/$ticketid'
+      path: '/tickets/edit/$ticketid'
+      fullPath: '/tickets/edit/$ticketid'
+      preLoaderRoute: typeof TicketsEditTicketidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -213,7 +253,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
+  TicketsNewRoute: TicketsNewRoute,
   TicketsIndexRoute: TicketsIndexRoute,
+  TicketsEditTicketidRoute: TicketsEditTicketidRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

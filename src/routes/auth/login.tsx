@@ -28,7 +28,7 @@ function RouteComponent() {
   };
   return (
     <form
-      className="flex w-full justify-center items-center flex-col gap-y-5"
+      className="flex w-full text-white justify-center items-center flex-col gap-y-5"
       onSubmit={handleSubmit}
     >
       <h2 className="text-xl md:text-3xl">Login</h2>
@@ -36,7 +36,7 @@ function RouteComponent() {
         <label htmlFor="email">Email</label>
         <input
           type="text"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          className="border border-white bg-white text-black rounded-md px-3 py-2 min-w-2xs md:min-w-md focus:border-dark focus:outline-none"
           name="email"
           required
         />
@@ -45,17 +45,13 @@ function RouteComponent() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          className="border border-white bg-white text-black rounded-md px-3 py-2 min-w-2xs md:min-w-md  focus:border-dark focus:outline-none"
           name="password"
           required
           minLength={8}
         />
       </div>
-      <Button
-        title="Login"
-        type="submit"
-        // style={{ backgroundColor: "black" }}
-      />
+      <Button title="Login" type="submit" />
       <p className="">
         Don't have an account?{" "}
         <Link

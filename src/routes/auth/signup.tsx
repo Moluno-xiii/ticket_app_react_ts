@@ -25,8 +25,9 @@ function RouteComponent() {
       toast.error("Invalid email");
       return;
     }
-    if (data.email !== data.confirmPassword) {
+    if (data.password !== data.confirmPassword) {
       toast.error("Both password fields do not match, try again!");
+      return;
     }
     signUp(data.email, data.password);
   };
@@ -40,7 +41,7 @@ function RouteComponent() {
         <label htmlFor="email">Email</label>
         <input
           type="text"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="email"
           required
         />
@@ -49,7 +50,7 @@ function RouteComponent() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="password"
           required
           minLength={8}
@@ -59,17 +60,13 @@ function RouteComponent() {
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           type="password"
-          className="border border-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-primary"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="confirmPassword"
           required
           minLength={8}
         />
       </div>
-      <Button
-        title="Sign up"
-        type="submit"
-        // style={{ backgroundColor: "black" }}
-      />
+      <Button title="Sign up" type="submit" />
       <p className="">
         Already have an account?{" "}
         <Link

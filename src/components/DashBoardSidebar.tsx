@@ -4,7 +4,10 @@ import { CiLogout } from "react-icons/ci";
 
 const DashboardSidebar = ({ openModal }: { openModal: () => void }) => {
   return (
-    <nav className="bg-cream font-inter drop-shadow-md rounded-md p-3 flex flex-col">
+    <nav
+      style={{ zIndex: 1 }}
+      className="bg-cream font-inter drop-shadow-xl border border-primary rounded-md p-3 flex z-2 flex-col"
+    >
       <ul className="flex flex-col gap-y-4 w-full flex-1">
         <li className="w-full">
           <Link

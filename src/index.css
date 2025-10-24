@@ -11,3 +11,20 @@
   --font-poppins: "Poppins", sans-serif;
   --font-grotesk: "Space Grotesk", sans-serif;
 }
+
+/* .scroll-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  background-color: #005d47be;
+  border-radius: 5px;
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+  background-color: #fcfcfc;
+} */
+
+html {
+  scroll-behavior: smooth;
+}

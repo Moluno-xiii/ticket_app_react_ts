@@ -12,7 +12,7 @@ function RouteComponent() {
 
   return (
     <div className="flex-1 font-grotesk flex flex-col justify-center items-center gap-y-2 text-white">
-      <h2 className="text-3xl md:text-4xl">Welcome to Taskify</h2>
+      <h2 className="text-3xl md:text-4xl">Welcome to Ticket-Ify</h2>
       <p className="italic text-center">
         Your number one platform for managing tickets
       </p>

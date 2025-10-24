@@ -46,11 +46,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(true);
     toast.success("Login successful");
     localStorage.setItem("ticketapp_session", crypto.randomUUID() + Date.now());
-    navigate({ to: "/dashboard" });
+    navigate({ to: "/dashboard/overview" });
   };
 
   const signUp = (email: string, password: string) => {
-    // check if user already exists in local storage
     const existingUser = getLocalStorageItem<{
       email: string;
       password: string;
