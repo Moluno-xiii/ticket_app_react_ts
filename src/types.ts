@@ -11,4 +11,6 @@ type LinkType = {
   route: string;
 };
 
-export type { Ticket, LinkType };
+type TicketStatus = "in_progress" | "open" | "closed" | "all";
+
+export type { Ticket, LinkType, TicketStatus };

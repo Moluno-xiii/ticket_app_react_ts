@@ -4,10 +4,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 
 import { routeTree } from "./routeTree.gen";
+import NotFound from "./components/NotFound";
 
 const router = createRouter({
   routeTree,
-  defaultNotFoundComponent: () => <div>Page not found</div>,
+  defaultNotFoundComponent: () => <NotFound />,
 });
 
 declare module "@tanstack/react-router" {

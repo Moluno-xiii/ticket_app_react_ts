@@ -7,6 +7,7 @@ import Button from "./Button";
 import Icon from "./Icon";
 import MobileSideBar from "./MobileSidebar";
 import type { LinkType } from "../../types";
+import { IoTicketOutline } from "react-icons/io5";
 
 const headerLinks: LinkType[] = [
   {
@@ -27,8 +28,9 @@ const Header: React.FC = () => {
     <header className="border-primary z-50 shadow-xl font-grotesk border sticky flex flex-row justify-between items-center top-4 rounded-lg  px-4 py-3 bg-cream">
       <Link
         to="/"
-        className="[&.active]:font-bold [&.active]:text-xl  hover:underline  transition-all duration-300 p-2   text-primary rounded-md"
+        className="[&.active]:font-bold [&.active]:text-xl flex flex-row gap-x-1 items-center  hover:underline  transition-all duration-300 p-2   text-primary rounded-md"
       >
+        <IoTicketOutline size={35} />
         Home
       </Link>
       {isLoggedIn ? (

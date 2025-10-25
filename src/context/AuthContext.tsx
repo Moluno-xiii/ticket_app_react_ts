@@ -94,7 +94,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateUserDetails = (name: string) => {
-    // localStorage.setItem("userDetails", JSON.stringify({ name }));
     setUserDetails({ name });
     toast.success("User details updated successfully!");
   };

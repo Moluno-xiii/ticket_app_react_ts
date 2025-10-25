@@ -1,75 +1,36 @@
-# React + TypeScript + Vite
+# Ticketier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A ticket management platform for my Frontend stage 2 task for HNG 13.
 
-Currently, two official plugins are available:
+## Task details
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Implement a functional ticket management platform with mock authentication and functional dashboard.
+- Implement in 3 technologies (React, Twig, Vue)
+- Auth with route protection.
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Dashboard to display ticket data and summary
+- CRUD ticket with status (in_progress, open, closed) with appropriate color tagging.
+- Mock Authentication with Local storage
 
-Note: This will impact Vite dev & build performances.
+## Pages
 
-## Expanding the ESLint configuration
+- Auth pages /auth/signup, /auth/login
+- Home page (/)
+- Dashboard (/dashboard)
+- Dashboard Overview (/dashboard/overview)
+- Dashboard settings (/dashboard/settings)
+- Tickets (/tickets)
+- Ticket details (/tickets/$ticket_id)
+- Create new ticket (/tickets/new)
+- Edit ticket (/tickets/edit/ticket_id)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Run locally
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/Moluno-xiii/ticket_app_react_ts
+cd ticket_app_react_ts
+pnpm install
+pnpm dev
 ```

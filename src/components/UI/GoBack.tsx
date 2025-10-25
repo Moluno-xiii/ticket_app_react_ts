@@ -5,14 +5,12 @@ import { useRouter } from "@tanstack/react-router";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 interface Props extends ComponentProps<"button"> {
-  // title: string;
   color?: string;
   icon?: IconType;
   additionalStyles?: string;
 }
 
 const GoBack = ({
-  // title,
   color = "var(--color-primary)",
   icon = IoArrowBackOutline,
   additionalStyles,

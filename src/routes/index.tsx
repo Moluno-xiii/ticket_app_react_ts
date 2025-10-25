@@ -15,7 +15,7 @@ function RouteComponent() {
   return (
     <div className="flex-1 text-center font-grotesk flex flex-col justify-center items-center gap-y-3 md:gap-y-5 text-white">
       <h2 className="text-3xl md:text-4xl">
-        Welcome to Ticket-Ify,
+        Welcome to Ticketier,
         <span className="text-amber-400 font-macondo italic">
           {" "}
           {userDetails?.name}
