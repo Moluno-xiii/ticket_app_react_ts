@@ -6,6 +6,18 @@ import { LogoutModal } from "../../routes/dashboard/route";
 import Button from "./Button";
 import Icon from "./Icon";
 import MobileSideBar from "./MobileSidebar";
+import type { LinkType } from "../../types";
+
+const headerLinks: LinkType[] = [
+  {
+    name: "Dashboard",
+    route: "/dashboard/",
+  },
+  {
+    name: "Tickets",
+    route: "/tickets",
+  },
+];
 
 const Header: React.FC = () => {
   const { isLoggedIn, logout } = useAuth();
@@ -22,22 +34,9 @@ const Header: React.FC = () => {
       {isLoggedIn ? (
         <>
           <ul className="hidden sm:flex flex-row gap-x-5 justify-between items-center">
-            <li>
-              <Link
-                to="/dashboard"
-                className="[&.active]:font-bold [&.active]:text-xl  hover:underline  transition-all duration-300 p-2  bg- text-primary rounded-md"
-              >
-                Dashboard
-              </Link>{" "}
-            </li>
-            <li>
-              <Link
-                to="/tickets"
-                className="[&.active]:font-bold [&.active]:text-xl  hover:underline  transition-all duration-300 p-2  bg- text-primary rounded-md"
-              >
-                Tickets
-              </Link>{" "}
-            </li>
+            {headerLinks.map((link) => (
+              <HeaderNavLink link={link} key={link.route} />
+            ))}
           </ul>
           <Button
             title="Logout"
@@ -49,6 +48,7 @@ const Header: React.FC = () => {
             icon={CiMenuFries}
             onClick={() => setIsNavOpen(true)}
             className="sm:hidden"
+            color="var(--color-primary)"
           />
           {isNavOpen ? (
             <MobileSideBar
@@ -72,3 +72,16 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+const HeaderNavLink = ({ link }: { link: LinkType }) => {
+  return (
+    <li>
+      <Link
+        to={link.route}
+        className="[&.active]:font-bold [&.active]:text-xl  hover:underline  transition-all duration-300 p-2  bg- text-primary rounded-md"
+      >
+        {link.name}
+      </Link>{" "}
+    </li>
+  );
+};

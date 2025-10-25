@@ -3,6 +3,9 @@ import useTicket from "../../../hooks/useTicket";
 import type { FormEvent } from "react";
 import type { Ticket } from "../../../types";
 import Button from "../../../components/UI/Button";
+import GoBack from "../../../components/UI/GoBack";
+import { IoArrowBackOutline } from "react-icons/io5";
+import useSetPageName from "../../../hooks/useSetPageName";
 
 export const Route = createFileRoute("/tickets/edit/$ticketid")({
   component: RouteComponent,
@@ -11,8 +14,11 @@ export const Route = createFileRoute("/tickets/edit/$ticketid")({
 function RouteComponent() {
   const { ticketid } = Route.useParams();
   const { getTicket, updateTicket } = useTicket();
-
   const ticket = getTicket(ticketid);
+  const pageName = ticket?.name
+    ? `Edit Ticket | ${ticket.name}`
+    : "Ticket not found";
+  useSetPageName(pageName);
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,8 +47,13 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col font-grotesk gap-y-4 md:gap-y-6 justify-center items-center w-full ">
-      <h2 className="text-xl md:text-2xl font-grotesk">Edit your new ticket</h2>
+      <h2 className="text-xl md:text-2xl font-grotesk">Edit ticket</h2>
       <form onSubmit={submitForm} className="flex flex-col gap-y-4 md:gap-y-6">
+        <GoBack
+          icon={IoArrowBackOutline}
+          color="orange"
+          additionalStyles="self-start flex "
+        />
         <div className="flex flex-col gap-y-2">
           <label htmlFor="name">Name</label>
           <input

@@ -3,6 +3,8 @@ import Button from "../../components/UI/Button";
 import type { FormEvent } from "react";
 import useTicket from "../../hooks/useTicket";
 import type { Ticket } from "../../types";
+import GoBack from "../../components/UI/GoBack";
+import useSetPageName from "../../hooks/useSetPageName";
 
 export const Route = createFileRoute("/tickets/new")({
   component: RouteComponent,
@@ -10,6 +12,7 @@ export const Route = createFileRoute("/tickets/new")({
 
 function RouteComponent() {
   const { createTicket } = useTicket();
+  useSetPageName("Create new Ticket");
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +28,7 @@ function RouteComponent() {
     <div className="flex flex-col font-grotesk gap-y-4 md:gap-y-6 justify-center items-center w-full ">
       <h2 className="text-xl md:text-2xl font-grotesk">Create new ticket</h2>
       <form onSubmit={submitForm} className="flex flex-col gap-y-4 md:gap-y-6">
+        <GoBack color="orange" additionalStyles=" " />
         <div className="flex flex-col gap-y-2">
           <label htmlFor="name">Name</label>
           <input

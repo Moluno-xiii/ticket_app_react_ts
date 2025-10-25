@@ -24,7 +24,7 @@ const Button: React.FC<Props> = ({
         !IconComponent
           ? "bg-primary text-white hover:bg-primary/80"
           : `text-red-600 `
-      } px-4 py-2 rounded-lg flex flex-row items-center justify-center gap-4   transition-all duration-300 cursor-pointer ${
+      } px-4 py-2 rounded-lg flex flex-row items-center justify-center gap-4 max-sm:text-sm   transition-all duration-300 cursor-pointer ${
         variant === "error" && "bg-red-600 hover:bg-red-600/50"
       } ${additionalStyles}`}
       {...rest}

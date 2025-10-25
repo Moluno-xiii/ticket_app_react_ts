@@ -41,7 +41,7 @@ function RouteComponent() {
         <label htmlFor="email">Email</label>
         <input
           type="text"
-          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 max-sm:max-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="email"
           required
         />
@@ -50,7 +50,7 @@ function RouteComponent() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 max-sm:max-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="password"
           required
           minLength={8}
@@ -60,7 +60,7 @@ function RouteComponent() {
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           type="password"
-          className="border border-dark bg-white text-dark rounded-md px-3 py-2 min-w-2xs md:min-w-md active:border-primary focus:outline-none"
+          className="border border-dark bg-white text-dark rounded-md px-3 py-2 max-sm:max-w-2xs md:min-w-md active:border-primary focus:outline-none"
           name="confirmPassword"
           required
           minLength={8}

@@ -8,6 +8,8 @@ type AuthContextTypes = {
   login: (email: string, password: string) => void;
   signUp: (email: string, password: string) => void;
   logout: () => void;
+  userDetails: { name: string } | undefined;
+  updateUserDetails: (name: string) => void;
 };
 
 const AuthContext = createContext<AuthContextTypes>({
@@ -15,11 +17,22 @@ const AuthContext = createContext<AuthContextTypes>({
   login: () => {},
   signUp: () => {},
   logout: () => {},
+  userDetails: { name: "" },
+  updateUserDetails: () => {},
 });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const [userDetails, setUserDetails] = useState<{ name: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const jsonUserDetails = localStorage.getItem("userDetails");
+    if (jsonUserDetails === undefined || jsonUserDetails === null) return;
+
+    const parsedUserDetails = JSON.parse(jsonUserDetails);
+    setUserDetails(parsedUserDetails);
+  }, []);
 
   useEffect(() => {
     const sessionToken = localStorage.getItem("ticketapp_session");
@@ -29,6 +42,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (!userDetails) return;
+    localStorage.setItem("userDetails", JSON.stringify(userDetails));
+  }, [userDetails]);
 
   const login = (email: string, password: string) => {
     const userCredentials = getLocalStorageItem<{
@@ -75,8 +93,23 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(false);
   };
 
+  const updateUserDetails = (name: string) => {
+    // localStorage.setItem("userDetails", JSON.stringify({ name }));
+    setUserDetails({ name });
+    toast.success("User details updated successfully!");
+  };
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, signUp }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        login,
+        logout,
+        signUp,
+        updateUserDetails,
+        userDetails,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -36,7 +36,7 @@ function RouteComponent() {
         <label htmlFor="email">Email</label>
         <input
           type="text"
-          className="border border-white bg-white text-black rounded-md px-3 py-2 min-w-2xs md:min-w-md focus:border-dark focus:outline-none"
+          className="border border-white bg-white text-black rounded-md px-3 py-2 max-sm:max-w-2xs md:min-w-md focus:border-dark focus:outline-none"
           name="email"
           required
         />
@@ -45,7 +45,7 @@ function RouteComponent() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="border border-white bg-white text-black rounded-md px-3 py-2 min-w-2xs md:min-w-md  focus:border-dark focus:outline-none"
+          className="border border-white bg-white text-black rounded-md px-3 py-2 max-sm:max-w-2xs md:min-w-md  focus:border-dark focus:outline-none"
           name="password"
           required
           minLength={8}

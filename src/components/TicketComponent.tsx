@@ -18,12 +18,12 @@ const TicketComponent = ({
       {isOpen !== ticket.id ? (
         <li
           key={ticket.id}
-          className="drop-shadow-md p-2 font-poppins bg-cream rounded-md "
+          className="drop-shadow-md p-2 flex flex-col font-poppins bg-cream rounded-md "
         >
           <header className="flex flex-row justify-between items-center">
-            <p className="text-lg md:text-2xl text-dark font-grotesk">
-              {ticket.name.length > 60
-                ? ticket.name.slice(0, 60) + "..."
+            <p className="text-xl md:text-2xl text-dark font-grotesk">
+              {ticket.name.length > 30
+                ? ticket.name.slice(0, 30) + "..."
                 : ticket.name}
             </p>
             <span
@@ -38,9 +38,9 @@ const TicketComponent = ({
               {ticket.status}
             </span>
           </header>
-          <div className="flex flex-col gap-y-2">
+          <div className="flex flex-1 flex-col gap-y-2">
             {ticket.description ? (
-              <p>
+              <p className="flex-1">
                 {ticket.description.length > 60
                   ? ticket.description.slice(0, 60) + "..."
                   : ticket.description}
@@ -51,17 +51,31 @@ const TicketComponent = ({
             <p>Date Created : {ticket.dateCreated}</p>
             <div className="flex flex-row justify-between items-center">
               <Button
+                aria-label="Delete ticket button"
                 title="Delete"
                 variant="error"
                 onClick={() => handleModal(ticket.id)}
               />
-              <Link
-                className="px-4 py-2 hover:bg-cream hover:border-primary border border-primary text-white  hover:text-primary self-end rounded-md font-grotesk bg-primary transition-all duration-300"
-                to="/tickets/edit/$ticketid"
-                params={{ ticketid: ticket.id }}
+
+              <section
+                aria-labelledby="ticket cta links"
+                className="flex flex-row gap-x-3 items-center"
               >
-                Edit
-              </Link>
+                <Link
+                  className="px-4 py-2 hover:bg-primary hover:border-primary border border-primary hover:text-white self-end rounded-md font-grotesk bg-cream text-primary transition-all max-sm:text-sm duration-300"
+                  to="/tickets/$ticketId"
+                  params={{ ticketId: ticket.id }}
+                >
+                  View
+                </Link>
+                <Link
+                  className="px-4 py-2 hover:bg-cream hover:border-primary border border-primary text-white  hover:text-primary self-end rounded-md font-grotesk bg-primary transition-all max-sm:text-sm duration-300"
+                  to="/tickets/edit/$ticketid"
+                  params={{ ticketid: ticket.id }}
+                >
+                  Edit
+                </Link>
+              </section>
             </div>
           </div>
         </li>

@@ -6,4 +6,9 @@ type Ticket = {
   id: string;
 };
 
-export type { Ticket };
+type LinkType = {
+  name: string;
+  route: string;
+};
+
+export type { Ticket, LinkType };

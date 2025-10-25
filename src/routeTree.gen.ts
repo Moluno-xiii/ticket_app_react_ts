@@ -14,6 +14,7 @@ import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TicketsIndexRouteImport } from './routes/tickets/index'
 import { Route as TicketsNewRouteImport } from './routes/tickets/new'
+import { Route as TicketsTicketIdRouteImport } from './routes/tickets/$ticketId'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardOverviewRouteImport } from './routes/dashboard/overview'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
@@ -43,6 +44,11 @@ const TicketsIndexRoute = TicketsIndexRouteImport.update({
 const TicketsNewRoute = TicketsNewRouteImport.update({
   id: '/tickets/new',
   path: '/tickets/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TicketsTicketIdRoute = TicketsTicketIdRouteImport.update({
+  id: '/tickets/$ticketId',
+  path: '/tickets/$ticketId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/$ticketId': typeof TicketsTicketIdRoute
   '/tickets/new': typeof TicketsNewRoute
   '/tickets': typeof TicketsIndexRoute
   '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/$ticketId': typeof TicketsTicketIdRoute
   '/tickets/new': typeof TicketsNewRoute
   '/tickets': typeof TicketsIndexRoute
   '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/dashboard/overview': typeof DashboardOverviewRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/tickets/$ticketId': typeof TicketsTicketIdRoute
   '/tickets/new': typeof TicketsNewRoute
   '/tickets/': typeof TicketsIndexRoute
   '/tickets/edit/$ticketid': typeof TicketsEditTicketidRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/$ticketId'
     | '/tickets/new'
     | '/tickets'
     | '/tickets/edit/$ticketid'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/$ticketId'
     | '/tickets/new'
     | '/tickets'
     | '/tickets/edit/$ticketid'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/overview'
     | '/dashboard/settings'
+    | '/tickets/$ticketId'
     | '/tickets/new'
     | '/tickets/'
     | '/tickets/edit/$ticketid'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
+  TicketsTicketIdRoute: typeof TicketsTicketIdRoute
   TicketsNewRoute: typeof TicketsNewRoute
   TicketsIndexRoute: typeof TicketsIndexRoute
   TicketsEditTicketidRoute: typeof TicketsEditTicketidRoute
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/tickets/new'
       fullPath: '/tickets/new'
       preLoaderRoute: typeof TicketsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tickets/$ticketId': {
+      id: '/tickets/$ticketId'
+      path: '/tickets/$ticketId'
+      fullPath: '/tickets/$ticketId'
+      preLoaderRoute: typeof TicketsTicketIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/settings': {
@@ -253,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
+  TicketsTicketIdRoute: TicketsTicketIdRoute,
   TicketsNewRoute: TicketsNewRoute,
   TicketsIndexRoute: TicketsIndexRoute,
   TicketsEditTicketidRoute: TicketsEditTicketidRoute,

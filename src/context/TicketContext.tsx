@@ -24,7 +24,6 @@ const TicketProvider = ({ children }: { children: ReactNode }) => {
 
   const storage =
     (JSON.parse(localStorage.getItem("tickets")!) as Ticket[]) ?? [];
-  console.log(storage);
   const [tickets, setTickets] = useState<Ticket[]>(storage);
 
   useEffect(() => {

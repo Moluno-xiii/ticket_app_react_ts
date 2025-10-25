@@ -1,4 +1,9 @@
-import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Outlet,
+  useNavigate,
+  useRouter,
+} from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import DashboardSidebar from "../../components/DashBoardSidebar";
 import withAuth from "../../components/others/withAuth";
@@ -12,10 +17,14 @@ export const Route = createFileRoute("/dashboard")({
 function RouteComponent() {
   const { logout } = useAuth();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const router = useRouter();
   const navigate = useNavigate();
+
   useEffect(() => {
+    if (router.latestLocation.href !== "/dashboard") return;
     navigate({ to: "/dashboard/overview" });
-  }, [navigate]);
+  }, [navigate, router.latestLocation.href]);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[200px_1fr]  gap-5 w-full">
       <DashboardSidebar openModal={() => setIsLogoutModalOpen(true)} />
